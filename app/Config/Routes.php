@@ -33,23 +33,26 @@ $routes->set404Override();
  * --------------------------------------------------------------------
  */
 
+// composer require agungsugiarto/codeigniter4-cors
+// php composer.phar require --prefer-dist yiisoft/yii2-faker
+
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 // $routes->get('/', 'Home::index');
 $routes->group('api', function ($routes){
-    $routes->resource('stops');
-    $routes->resource('users');
-    $routes->resource('partners');
-    $routes->resource('income');
-    $routes->resource('expenses');
-    $routes->resource('chargers');
-    $routes->resource('fines');
-    $routes->resource('income_category');
-    $routes->resource('expenses_category');
-    $routes->resource('category_fines');
-    $routes->resource('billing_notice');
-    $routes->resource('labor_union');
-    $routes->resource('role');
+    $routes->resource('stops');//paradas
+    $routes->resource('users');//usuarios
+    $routes->resource('partners');//socios
+    $routes->resource('income');//ingresos
+    $routes->resource('expenses');//egresos
+    $routes->resource('charges');//cobros
+    $routes->resource('fines');//multas
+    $routes->resource('income_category');//categoria ingresos
+    $routes->resource('expenses_category');//categoria egresos
+    $routes->resource('category_fines');//categoria multas
+    $routes->resource('billing_notice');//aviso de cobro
+    $routes->resource('labor_union');//sindicato
+    $routes->resource('role');//role
 });
 
 /*
