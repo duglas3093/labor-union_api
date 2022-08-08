@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use Faker\Generator;
 
 class Partners extends Model
 {
@@ -39,4 +40,22 @@ class Partners extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function fake(Generator &$faker)
+    {
+        return [
+            'partner_name' => $faker->words(2,true),
+            'partner_lastname' => $faker->words(2,true),
+            'partner_code' => $faker->words(2,true),
+            'partner_ci' => $faker->words(2,true),
+            'partner_cicomplement' => $faker->words(2,true),
+            'partner_address' => $faker->words(2,true),
+            'partner_cellphone' => $faker->words(2,true),
+            'partner_ciride' => $faker->words(2,true),
+            'partner_photo' => $faker->imageUrl(640, 480, 'animals', true),
+            'partner_tuition' => $faker->words(2,true),
+            'partner_propetary' => $faker->words(2,true),
+            'state_id' => $faker->words(2,true),
+        ];
+    }
 }

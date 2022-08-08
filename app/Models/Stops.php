@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use Faker\Generator;
 
 class Stops extends Model
 {
@@ -14,7 +15,11 @@ class Stops extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'stop_name',
+        'stop_latitud',
+        'stop_longitud'
+    ];
 
     // Dates
     protected $useTimestamps = false;
@@ -39,4 +44,13 @@ class Stops extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function fake(Generator &$faker)
+    {
+        return [
+            'stop_name'  => $faker->words(2,true),
+            'stop_latitud'  => $faker->randomNumber(6,true),
+            'stop_longitud'  => $faker->randomNumber(6,true),
+        ];
+    }
 }
