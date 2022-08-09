@@ -37,6 +37,14 @@ class Charges extends Migration
                 'type' => 'int',
                 'constraint' => 12,
             ],
+            'created_at' => [
+                'type' => 'timestamp',
+                'null' => true,
+            ],
+            'updated_at' => [
+                'type' => 'timestamp',
+                'null' => true,
+            ],
         ]);
         $this->forge->addKey('charge_id',true);
         $this->forge->createTable('charges');

@@ -59,6 +59,14 @@ class Users extends Migration
                 'constraint' => 12,
                 'default' => 0,
             ],
+            'created_at' => [
+                'type' => 'timestamp',
+                'null' => true,
+            ],
+            'updated_at' => [
+                'type' => 'timestamp',
+                'null' => true,
+            ],
         ]);
         $this->forge->addKey('user_id', true);
         $this->forge->createTable('users');

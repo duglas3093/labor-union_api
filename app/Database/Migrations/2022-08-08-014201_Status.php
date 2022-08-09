@@ -25,6 +25,14 @@ class Status extends Migration
                 'constraint' => 12,
                 'null' => false,
             ],
+            'created_at' => [
+                'type' => 'timestamp',
+                'null' => true,
+            ],
+            'updated_at' => [
+                'type' => 'timestamp',
+                'null' => true,
+            ],
         ]);
         $this->forge->addKey('state_id',true);
         $this->forge->createTable('status');

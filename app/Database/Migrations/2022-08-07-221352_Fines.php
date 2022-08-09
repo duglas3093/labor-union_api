@@ -43,6 +43,14 @@ class Fines extends Migration
                 'type' => 'int',
                 'constraint' => 12,
             ],
+            'created_at' => [
+                'type' => 'timestamp',
+                'null' => true,
+            ],
+            'updated_at' => [
+                'type' => 'timestamp',
+                'null' => true,
+            ],
         ]);
         $this->forge->addKey('fine_id',true);
         $this->forge->createTable('fines');

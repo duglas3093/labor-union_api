@@ -35,6 +35,14 @@ class LaborUnion extends Migration
                 'constraint' => 20,
                 'null' => false,
             ],
+            'created_at' => [
+                'type' => 'timestamp',
+                'null' => true,
+            ],
+            'updated_at' => [
+                'type' => 'timestamp',
+                'null' => true,
+            ],
         ]);
         $this->forge->addKey('laborunion_id',true);
         $this->forge->createTable('labor_union');
