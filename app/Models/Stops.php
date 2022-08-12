@@ -5,8 +5,7 @@ namespace App\Models;
 use CodeIgniter\Model;
 use Faker\Generator;
 
-class Stops extends Model
-{
+class Stops extends Model{
     protected $DBGroup          = 'default';
     protected $table            = 'stops';
     protected $primaryKey       = 'stop_id';
@@ -18,20 +17,38 @@ class Stops extends Model
     protected $allowedFields    = [
         'stop_name',
         'stop_latitud',
-        'stop_longitud'
+        'stop_longitud',
+        'state_id',
+        'updated_at'
     ];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
+    protected $validationRules      = [
+        'stop_name'         => [
+            'label'  => 'Nombre',
+            'rules'  => 'required|alpha_space|min_length[3]|max_length[150]',
+        ],
+        'state_id'          => [
+            'label'  => 'Estado',
+            'rules'  => 'required',
+        ],
+    ];
+    protected $validationMessages   = [
+        'stop_name'     => [
+            'required' =>'El campo {field} es requerido.',
+        ],
+        'state_id'     => [
+            'required' =>'El campo {field} es requerido.',
+        ],
+    ];
+    protected $skipValidation       = true;
     protected $cleanValidationRules = true;
 
     // Callbacks
@@ -45,12 +62,12 @@ class Stops extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function fake(Generator &$faker)
-    {
+    public function fake(Generator &$faker){
         return [
-            'stop_name'  => $faker->words(2,true),
+            'stop_name'     => $faker->words(2,true),
             'stop_latitud'  => $faker->randomNumber(6,true),
-            'stop_longitud'  => $faker->randomNumber(6,true),
+            'stop_longitud' => $faker->randomNumber(6,true),
+            'state_id'      => 1
         ];
     }
 }

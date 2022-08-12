@@ -15,18 +15,81 @@ class Partners extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'partner_name',
+        'partner_lastname',
+        'partner_code',
+        'partner_ci',
+        'partner_cicomplement',
+        'partner_address',
+        'partner_cellphone',
+        'partner_ciride',
+        'partner_photo',
+        'partner_tuition',
+        'partner_propetary',
+        'state_id',
+    ];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
+    protected $validationRules      = [
+        'partner_name'          => [
+            'label'  => 'Nombre',
+            'rules'  => 'required|alpha_space|min_length[3]|max_length[150]',
+        ],
+        'partner_lastname'      => [
+            'label'  => 'Apellido(s)',
+            'rules'  => 'required|alpha_space|min_length[3]|max_length[150]',
+        ],
+        'partner_code'          => [
+            'label'  => 'Codigo de socio',
+            'rules'  => 'required|min_length[3]|max_length[20]',
+        ],
+        'partner_ci'            => [
+            'label'  => 'Carnet de Identidad',
+            'rules'  => 'numeric',
+        ],
+        'partner_cellphone'     => [
+            'label'  => 'Número de Celular',
+            'rules'  => 'min_length[3]|max_length[15]',
+        ],
+        'state_id'          => [
+            'label'  => 'Estado',
+            'rules'  => 'required',
+        ],
+    ];
+    protected $validationMessages   = [
+        'partner_name'  =>[
+            'required'      =>'El campo {field} es requerido.',
+            'alpha_space'   => 'El campo no permite numeros',
+            'min_length'    => 'El campo {field} debe contener almenos 3 caracteres',
+            'max_length'    => 'El campo {field} debe contener maximo 150 caracteres',
+        ],
+        'partner_lastname'  =>[
+            'required'      =>'El campo {field} es requerido.',
+            'alpha_space'   => 'El campo no permite numeros',
+            'min_length'    => 'El campo {field} debe contener almenos 3 caracteres',
+            'max_length'    => 'El campo {field} debe contener maximo 150 caracteres',
+        ],
+        'partner_code'  =>[
+            'required'      =>'El campo {field} es requerido.',
+            'min_length'    => 'El campo {field} debe contener almenos 3 caracteres',
+            'max_length'    => 'El campo {field} debe contener maximo 20 caracteres',
+        ],
+        'partner_cellphone' =>[
+            'min_length'    => 'El campo {field} debe contener almenos 3 caracteres',
+            'max_length'    => 'El campo {field} debe contener maximo 15 caracteres',
+        ],
+        'state_id'  =>[
+            'required'      =>'El campo {field} es requerido.',
+        ],
+    ];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
 
@@ -43,19 +106,21 @@ class Partners extends Model
 
     public function fake(Generator &$faker)
     {
+        $ci = $faker->randomNumber(7,true);
         return [
-            'partner_name' => $faker->words(2,true),
-            'partner_lastname' => $faker->words(2,true),
+            'partner_name' => $faker->firstName(),
+            'partner_lastname' => $faker->lastName(),
             'partner_code' => $faker->words(2,true),
-            'partner_ci' => $faker->words(2,true),
-            'partner_cicomplement' => $faker->words(2,true),
-            'partner_address' => $faker->words(2,true),
-            'partner_cellphone' => $faker->words(2,true),
-            'partner_ciride' => $faker->words(2,true),
-            'partner_photo' => $faker->imageUrl(640, 480, 'animals', true),
-            'partner_tuition' => $faker->words(2,true),
-            'partner_propetary' => $faker->words(2,true),
-            'state_id' => $faker->words(2,true),
+            'partner_ci' => $ci,
+            // 'partner_cicomplement' => $faker->words(2,true),
+            'partner_address' => $faker->address(),
+            'partner_cellphone' => $faker->phoneNumber(),
+            'partner_ciride' => $ci,
+            'partner_photo' => $faker->imageUrl(640, 480, 'people', true),
+            'partner_tuition' => $faker->regexify('[A-Z]{5}[0-4]{3}'),
+            'partner_propetary' => 1,
+            'state_id' => 1,
         ];
     }
+
 }

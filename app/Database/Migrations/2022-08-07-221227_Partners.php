@@ -50,7 +50,7 @@ class Partners extends Migration
                 'constraint' => 10,
                 'unsigned' => false,
             ],
-            'partner_ciride' => [
+            'partner_ciride' => [//ci licencia conducir
                 'type' => 'varchar',
                 'constraint' => 20,
                 'unsigned' => false,

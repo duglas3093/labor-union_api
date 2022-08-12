@@ -50,7 +50,7 @@ $routes->group('api', function ($routes){
     $routes->resource('income_category');//categoria ingresos
     $routes->resource('expenses_category');//categoria egresos
     $routes->resource('category_fines');//categoria multas
-    $routes->resource('billing_notice');//aviso de cobro
+    $routes->resource('billingnotices');//aviso de cobro
     $routes->resource('labor_union');//sindicato
     $routes->resource('role');//role
 });

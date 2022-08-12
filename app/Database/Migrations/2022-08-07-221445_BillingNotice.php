@@ -16,8 +16,7 @@ class BillingNotice extends Migration
                 'auto_increment' => true,
             ],
             'billnotice_description' => [
-                'type' => 'varchar',
-                'constraint' => 250,
+                'type' => 'TEXT',
                 'null' => false,
             ],
             'billnotice_amount' => [

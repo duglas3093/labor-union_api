@@ -30,6 +30,11 @@ class Users extends Migration
                 'constraint' => 10,
                 'unsigned' => false,
             ],
+            'user_email' => [
+                'type' => 'varchar',
+                'constraint' => 70,
+                'unsigned' => false,
+            ],
             'user_direction' => [
                 'type' => 'varchar',
                 'constraint' => 50,
@@ -54,6 +59,8 @@ class Users extends Migration
                 'type' => 'int',
                 'constraint' => 12,
             ],
+            // para indicar que si el usuario ingreso por primera vez.
+            // esto para que pueda realizar el cambio de contraseña en base a una contraseña por defecto
             'user_start' => [
                 'type' => 'int',
                 'constraint' => 12,
